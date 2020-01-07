@@ -32,8 +32,8 @@ Created on Sun Dec 29 13:30:04 2019
 import os
 import csv
 
-
 budget_data_csv = os.path.join("C:\\Users\\chris\\Desktop\\GT-ATL-DATA-PT-12-2019-U-C\\Homework\\03-Python\\Instructions\\PyBank\\Resources\\budget_data.csv")
+budget_analysis = os.path.join("Analysis", "budget_analysis.txt")
 
 month_total = 0
 total_sum = 0
@@ -48,9 +48,7 @@ with open(budget_data_csv, newline="") as csvfile:
     
     #csv_header = next(csvfile)
     next(csv_reader)
-
-   
-    
+     
 #Calculate number of months under Months column    
     for row in csv_reader:
         month_total += 1
@@ -73,14 +71,20 @@ little = min(res)
 max_date = month_count[res.index(big)+1]
 min_date = month_count[res.index(little)+1]
 
-print("Financial Analysis")
-print("--------------------------------")    
-print("Total Months: " + str(month_total))
-print("Total: $" + str(total_sum))   
-print("Average Change: $" + str(profit_sum))  
-print("Greatest Increase in Profits:" + str((max_date) + " " + str(big)))
-print("Greatest Decrease in Profits:" + str((min_date) + " " +str(little)))
-      
+output = (
+    f"Financial Analysis\n"
+    f"--------------------------------\n"    
+    f"Total Months: {month_total}\n"
+    f"Total: ${total_sum:,}\n"  
+    f"Average Change: ${profit_sum:,.2f}\n"  
+    f"Greatest Increase in Profits: {max_date} (${big:,})\n"
+    f"Greatest Decrease in Profits: {min_date} (${little:,})\n"
+)
+
+print(output)
+
+with open(budget_analysis,"w") as txt_file:
+    txt_file.write(output)     
 
     
     
