@@ -44,8 +44,7 @@ profit_values = []
 month_count = []
 res = []
 
-
-# Read csv file (budget_data)
+#Read csv file (budget_data)
 with open(budget_data_csv, newline="") as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
     
@@ -76,7 +75,7 @@ little = min(res)
 max_date = month_count[res.index(big)+1]
 min_date = month_count[res.index(little)+1]
 
-#print financial analysis results to terminal and text file.
+#Print financial analysis results to terminal and text file.
 output = (
     f"Financial Analysis\n"
     f"--------------------------------\n"    

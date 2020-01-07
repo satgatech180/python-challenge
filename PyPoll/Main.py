@@ -74,7 +74,7 @@ output=(
     f"------------------------\n"
 )    
 
-# For each candidate calculate and attach percent of votes and attach candidate's total votes.
+#For each candidate calculate and attach percent of votes and attach candidate's total votes.
 for key in electoral_votes:
     output += f"{key}: {str('%.3f'%((electoral_votes[key]/sum(electoral_votes.values()))*100))}% ({electoral_votes[key]})\n"
     #output.append(f"{key}: {round((electoral_votes[key]/sum(electoral_votes.values()))*100,3)}% ({electoral_votes[key]})\n")
