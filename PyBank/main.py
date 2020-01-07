@@ -29,12 +29,15 @@ Created on Sun Dec 29 13:30:04 2019
 #  Greatest Decrease in Profits: Sep-2013 ($-2196167)
 #  ```
 
+#Add modules.
 import os
 import csv
 
+#Access budget_data csv file and define textfile path
 budget_data_csv = os.path.join("C:\\Users\\chris\\Desktop\\GT-ATL-DATA-PT-12-2019-U-C\\Homework\\03-Python\\Instructions\\PyBank\\Resources\\budget_data.csv")
 budget_analysis = os.path.join("Analysis", "budget_analysis.txt")
 
+#Set month counter, total profits counter, create open list for profit/losses values, open list for months, open list for monthly profit changes. 
 month_total = 0
 total_sum = 0
 profit_values = []
@@ -57,20 +60,23 @@ with open(budget_data_csv, newline="") as csvfile:
 #Calculate sum for Proft/Losses column        
         total_sum += int(row[1])
         
-#Add all profits/losses values in a list in order to loop through to calculate average MoM profit/loss change.
+#Add all profits/losses values to open list and count number of months and add to open list.
         profit_values.append(int(row[1]))
         month_count.append(row[0])
 
-##print(profit_values)
+#Calculate monthly profit changes.
 res = [profit_values[i+1] - profit_values[i] for i in range(len(profit_values)-1)]
        
+#Calculate average monthly profit change.
 profit_sum = round(sum(res)/len(res), 2) 
 
+#Set greatest profit incresae and month and greatest loss and month.
 big = max(res)
 little = min(res)
 max_date = month_count[res.index(big)+1]
 min_date = month_count[res.index(little)+1]
 
+#print financial analysis results to terminal and text file.
 output = (
     f"Financial Analysis\n"
     f"--------------------------------\n"    
